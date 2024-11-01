@@ -5,7 +5,7 @@ import pygame.image
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import WIN_WIDTH, C_ORANGE, MENU_OPTION, C_WHITE, C_YELLOW
+from code.Const import WIN_WIDTH, WIN_HEIGHT, C_ORANGE, MENU_OPTION, C_WHITE, C_YELLOW
 
 
 class Menu:
@@ -13,6 +13,8 @@ class Menu:
         self.window = window
         self.surf = pygame.image.load('./asset/MenuBg.png').convert_alpha()
         self.rect = self.surf.get_rect(left=0, top=0)
+        self.my_name = "Caroline. A. O. Stocco"
+        self.my_ru = "RU: 4498448"
 
     def run(self):
         menu_option = 0
@@ -23,6 +25,9 @@ class Menu:
             self.window.blit(source=self.surf, dest=self.rect)
             self.menu_text(50, "Mountain", C_ORANGE, ((WIN_WIDTH / 2), 70))
             self.menu_text(50, "Shooter", C_ORANGE, ((WIN_WIDTH / 2), 120))
+
+            # Display your name and RU
+            self.menu_text(10, f"{self.my_name} | {self.my_ru}", C_WHITE, (120, WIN_HEIGHT - 15))
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
@@ -55,3 +60,4 @@ class Menu:
         text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
         text_rect: Rect = text_surf.get_rect(center=text_center_pos)
         self.window.blit(source=text_surf, dest=text_rect)
+        
